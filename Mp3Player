@@ -1,0 +1,124 @@
+from tkinter import ttk,StringVar,Label,Button,Entry,IntVar,Scale,HORIZONTAL,Tk
+from tkinter.constants import VERTICAL
+from PIL import Image,ImageTk
+import os
+from tkinter import filedialog as fd
+os.add_dll_directory(r'C:\Users\bethd')
+
+import vlc
+from vlc import libvlc_media_player_new
+root=Tk()
+
+root.title('MP3 Player')
+
+#soundFile=vlc.MediaPlayer(r'C:\PythonProjects\Lance\Utility\Audio Stuff\Sources\Monkey Sounds.mp3')
+window_default=Image.open(r'C:\PythonProjects\Lance\Images\hamster.jpg')
+test=ImageTk.PhotoImage(window_default)
+
+
+error_messages={
+    'file_error':'File was unable to be opened. VLC Media Player supports many file types so be careful of this issue.',
+    'play_error':'Media Player encountered error trying to play this file.',
+    'file_not_found':'File was unable to be found.'
+}
+
+def play():
+    progress=ProBar['value']
+    length_found=False
+    if soundFile.is_playing()==True:
+        soundFile.pause()
+        ProBar.stop()
+        ProBar['value']=progress
+    else:
+        soundFile.play()
+        """
+        if is_parsed(soundFile)==True:
+            soundLength=soundFile.get_length()
+            length_found=True
+            print(soundLength)
+           """ 
+        ProBar.start()
+
+status=StringVar()
+status.set('Play')
+
+def skip():
+    pass
+
+def goback():
+    pass
+
+def jump_to():
+    pass
+
+def select_file():
+    global soundFile
+    filename=fd.askopenfilename() 
+    soundFile=vlc.MediaPlayer(rf'{filename}')
+    update_title(filename,sourceName)
+    print(rf'{filename}')
+
+def display_messages(message_box):
+    message_box.config(text='There is no message to display at this time.')
+
+def update_title(filename,sourceName):
+    reverse=filename[::-1]
+    snippet=''
+    for i in reverse:
+        if i=='/':
+            break
+        snippet=snippet+i
+    teppins=snippet[::-1]
+    newTitle=''
+    for k in teppins:
+        if k == '.':
+            break
+        newTitle=newTitle+k
+    sourceName.config(text=newTitle)
+
+# Sound bar
+num=IntVar()
+EX=Label(root,textvariable=num).grid(row=5,column=0,sticky='we')
+manual=Label(root).grid(row=5,column=0,sticky='we')
+def updateLbl(val):
+    try:
+        soundFile.audio_set_volume(int(val))
+    except:
+        pass
+
+#           CORE FEATURES
+# Pause & Play button interchangeable       -- COMPLETED
+# Box for displaying song image/thumbnail
+# progress bar
+# something to select files     -- COMPLETED
+# sliding volume adjustment     -- COMPLETED
+# display Sound file name       -- COMPLETED
+# box for displaying error/other messages 
+# make it look nice
+
+#           BONUS FEATURES  
+# playlist option
+# custom button shapes and icons
+
+# create widgets
+window=Label(root,image=test)
+PausePlayB=Button(root,text=status,command=play)
+soundBar=Scale(root,orient=VERTICAL,length=191,from_=1.0,to=100.0,variable=num,command=updateLbl)
+soundBar.set(100)
+Browse=Button(root,text='Browse',command=select_file)
+ProBar=ttk.Progressbar(root,length=263,orient=HORIZONTAL,mode='determinate')
+message_box=Label(root,text='I have not been updated yet.')
+sourceName=Label(root,text='Audio by AudioMaker')
+
+# place widgets
+window.grid(row=0,column=0,padx=5,pady=5,columnspan=3)
+soundBar.grid(row=0,column=3,padx=10,pady=5,sticky='we')
+ProBar.grid(row=1,column=0,columnspan=2)
+sourceName.grid(row=2,column=0,columnspan=2)
+PausePlayB.grid(row=3,column=1,padx=5,pady=5)
+Browse.grid(row=3,column=0,padx=5,pady=5)
+message_box.grid(row=6,column=0)
+
+display_messages(message_box)
+
+root.mainloop()
