@@ -1,0 +1,30 @@
+body{
+    line-height: 1.4;
+}
+.expense-instance{
+    display:flex;
+    flex-direction:row;
+    background-color:lightskyblue;
+    padding:10px;
+    min-width:120px;
+    max-width:200px;
+    justify-content: space-around;
+}
+.e-btn{
+    align-self:flex-end;
+}
+#balance{
+    width:70px;
+    height:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#balance.negative-balance{
+    background-color:#ff2d2d;
+    color:white;
+}
+#balance.positive-balance{
+    background-color:#0fff00;
+    color:white;
+}

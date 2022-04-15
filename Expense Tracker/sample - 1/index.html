@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <div id="budget-form">
+            <label for="budget">Enter Your Budget</label>
+            <input id="budget" placeholder="Enter your budget" type="number">
+            <button id="budget-btn">Submit</button>
+        </div>
+        <div id="expense-form">
+            <label for="expense">Enter an Expense</label>
+            <input id="expense" placeholder="Enter an expense">
+            <label for="expense-amount">Enter Expense Amount</label>
+            <input id="expense-amount" type="number">
+            <button id="expense-btn">Submit</button>
+        </div>
+        <div id="budget-container">
+            <h1 id="b-header">Budget</h1>
+            <p>$<span id='budget-display'>0</span></p>
+        </div>
+        <div id="expense-container">
+            <h1 id="e-header">Expense</h1>
+            <div id="expense-flex">
+                <!--    Example:
+                    <div class="expense-instance">
+                        <p class="e-item">Rocket Fuel</p>
+                        <p class="e-amount">$70</p>
+                        <button class="e-btn">X</button>
+                    </div>
+            -->
+            </div>
+            <div id="calculated-expenses">
+                <p id="calculations">-$0</p>
+            </div>
+        </div>
+        <div id="balance-container">
+            <h1 id="bal-header">Balance</h1>
+            <div id="balance" class="positive-balance">
+                <p>$<span id="balance-display">0</span></p>
+            </div>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
