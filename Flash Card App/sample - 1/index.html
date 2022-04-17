@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta&family=Nunito&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="card">
+            <div class="front">
+                <h1 id="front-text">My Front Text</h1>
+            </div>
+            <div class="back">
+                <p id="back-text">back text</p>
+            </div>
+        </div>
+    </div>
+    <div class="cat-display">
+        Selection: Basic
+    </div>
+    <div id="navigation">
+        <button id="previous-card">Previous</button>
+        <button id="random">Random</button>
+        <button id="next-card">Next</button>
+    </div>
+    <div id="categories">
+        <h2 class="cat-header">Categories</h2>
+        <div class="cat-container">
+            <div id="c-basic" class="cat-item">
+                Basic
+            </div>
+            <div id="c-node.js" class="cat-item">
+                Node.JS
+            </div>
+            <div id="c-express" class="cat-item">
+                Express
+            </div>
+            <div id="c-javascript" class="cat-item">
+                JavaScript
+            </div>
+            <div id="c-custom" class="cat-item">
+                Custom
+            </div>
+        </div>
+    </div>
+    <div id="custom-cards">
+        <label for="front-input">Front:</label>
+        <input id="front-input" placeholder="Enter card front here" required>
+        <label for="back-input">Back:</label>
+        <textarea id="back-input" placeholder="Enter card back here" required></textarea>
+        <button id="custom-submit">Create</button>
+    </div>
+    <script src="cards.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
